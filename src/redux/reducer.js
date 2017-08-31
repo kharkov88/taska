@@ -1,4 +1,4 @@
-import {UPDATE_USERS,ADD_USER,UPDATE_COUNTER} from './actions'
+import {UPDATE_USERS,ADD_USER,UPDATE_COUNTER,DELETE_USER} from './actions'
 const initState ={
     users:[],
     counterUs:0
@@ -27,18 +27,21 @@ function updating(state,action){
         return [
             ...state,
             {
+                id:++state.length,
                 name:action.obj.name,
                 email:action.obj.email,
                 phone:action.obj.phone,
                 job:action.obj.job
             }
         ]
+        case DELETE_USER:
+        return state.filter((item)=>item.id!=action.id)
         default: return state;
     }
 }
 
-function upCounter(state,action){
+function upCounter(state=0,action){
     if(action.type===UPDATE_COUNTER){
-        return state=action.number
+        return action.number
     }
 }

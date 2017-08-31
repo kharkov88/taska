@@ -6,18 +6,6 @@ import {Calcul} from './components/calcul'
 import './App.css'
 
 class App extends Component {
-  constructor(props){
-    super(props)
-    this.state={
-      countUsers:0
-    }
-    this.setCount = this.setCount.bind(this)
-  }
-  setCount(){
-    this.setState({
-      countUsers:this.props.users.length
-    })
-  }
   render() {
     let users  = this.props.users
     return (
@@ -34,10 +22,10 @@ class App extends Component {
           </div>   
           {
             users.map((item,index)=>{
-            return <Users person={item} key={index}/>
+            return <Users person={item} key={index} id={item.id} delete={this.props.actions.delUser}/>
           })
           }
-          <button>get users</button>
+          <button className="btn btn-info btn-sm">get users</button>
         </section>
         <NewUser/>
         <Calcul/>
@@ -46,10 +34,5 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = function (state){ 
-    return {
-        users:state.users
-    }
-}
 
-export default connect(mapStateToProps)(App);
+export default App;

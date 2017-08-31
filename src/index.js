@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import {ConnectApp} from './containers/connect_app';
 import registerServiceWorker from './registerServiceWorker';
 import {createStore,applyMiddleware} from 'redux'
 import {createLogger}from'redux-logger'
@@ -19,7 +19,7 @@ store.dispatch(getUsers())
 
 ReactDOM.render(
     <Provider store={store}>
-        <App />
+        <ConnectApp/>
     </Provider>,
     document.getElementById('root')
 );

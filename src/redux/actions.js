@@ -19,6 +19,14 @@ export function addUser(obj){
         obj
     }
 }
+export const DELETE_USER ='DELETE_USER'
+export function delUser(id){
+    return{
+        type:'DELETE_USER',
+        id
+    }    
+}
+
 export const GET_REQUEST = 'GET_REQUEST'
 export function getRequst(){
     return {
