@@ -10,9 +10,10 @@ export class Users extends Component {
           <div className="col-md-3">{this.props.person.email}</div>
           <div className="col-md-3">{this.props.person.phone}</div>
           <div className="col-md-3">{this.props.person.job}</div>
-          <button className="btn btn-danger btn-sm" onClick={()=>{
+          <div className="col-md-1"><button className="btn btn-danger btn-sm" onClick={()=>{
             this.props.delete(this.props.person.id)
             }}>delete user</button>
+          </div>
           <hr/>
         </div>
       )

@@ -1,4 +1,4 @@
-import {GET_REQUEST, UPDATE_USERS,ADD_USER,UPDATE_CONVERT,DELETE_USER} from './actions'
+import {GET_REQUEST, UPDATE_USERS,ADD_USER,UPDATE_CONVERT,DELETE_USER,CLEAR} from './actions'
 const initState ={
     users:[],
     convert:0
@@ -35,6 +35,8 @@ function updating(state,action){
         ]
         case DELETE_USER:
         return state.filter((item)=>item.id!=action.id)
+        case CLEAR:
+        return []
         default: return state;
     }
 }

@@ -26,23 +26,30 @@ export function getRequst(){
         type:GET_REQUEST
     }
 }
-
+export const CLEAR = 'CLEAR'
+export function clearUsers(){
+    return{
+        type: 'CLEAR'
+    }
+}
 //асинхроны
-export function getUsers(){
+export function getUsers(url='/data/user.json'){
     return dispatch => {
-        fetch('https://jsonplaceholder.typicode.com/users',{
-            method:'get'
+        dispatch(clearUsers())
+        fetch(url,{
         })
         .then(response=>{
-            response.json().then(data=>{           
+            response.json().then(data=>{
+                if(data.length==0){
+                    document.getElementById('result_users').innerHTML = 'Users not found'
+                }           
                 data.map(item=>dispatch(updateUsers({
                     id:item.id,
                     name:item.name,
                     email:item.email,
                     phone:item.phone,
                     job:item.company.name
-                })))
-                //dispatch(getRequst())                
+                })))                
             })          
         }) 
     }
