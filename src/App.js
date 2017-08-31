@@ -7,7 +7,7 @@ import './App.css'
 
 class App extends Component {
   render() {
-    let users  = this.props.users
+    let {users,actions,convert}  = this.props
     return (
       <div className="App container">
         <section className="users">
@@ -22,13 +22,13 @@ class App extends Component {
           </div>   
           {
             users.map((item,index)=>{
-            return <Users person={item} key={index} id={item.id} delete={this.props.actions.delUser}/>
+            return <Users person={item} key={index} id={item.id} delete={actions.delUser}/>
           })
           }
           <button className="btn btn-info btn-sm">get users</button>
         </section>
         <NewUser/>
-        <Calcul/>
+        <Calcul convert={actions.convert} convertValue={convert}/>
       </div>
     );
   }

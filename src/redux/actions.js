@@ -5,13 +5,6 @@ export function updateUsers(obj){
         obj
     }
 }
-export const  UPDATE_COUNTER = 'UPDATE_COUNTER'
-export function updateCounter(number){
-    return{
-        type:'UPDATE_COUNTER',
-        number
-    }
-}
 export const ADD_USER ='ADD_USER'
 export function addUser(obj){
     return{
@@ -34,18 +27,14 @@ export function getRequst(){
     }
 }
 
-export const GET_USERS = 'GET_USERS'
+//асинхроны
 export function getUsers(){
     return dispatch => {
-        dispatch({
-            type:GET_REQUEST
-        })
         fetch('https://jsonplaceholder.typicode.com/users',{
             method:'get'
         })
         .then(response=>{
-            response.json().then(data=>{
-                
+            response.json().then(data=>{           
                 data.map(item=>dispatch(updateUsers({
                     id:item.id,
                     name:item.name,
@@ -53,9 +42,31 @@ export function getUsers(){
                     phone:item.phone,
                     job:item.company.name
                 })))
-                dispatch(updateCounter(data.length))
                 //dispatch(getRequst())                
             })          
         }) 
+    }
+}
+
+export function convert(fromVal,enter,toVal){
+    return (dispatch) => {
+        fetch(`http://api.fixer.io/latest?base=${fromVal}`,{
+            method:'get'
+        })  
+        .then(response=>{
+            response.json().then(data=>{                           
+                let kef = data.rates[toVal]
+                fromVal===toVal
+                ?dispatch(updateConvert(enter))
+                :dispatch(updateConvert((enter*kef).toFixed(2)))          
+            })          
+        }) 
+    }
+}
+export const  UPDATE_CONVERT = 'UPDATE_CONVERT'
+export function updateConvert(number){
+    return{
+        type:'UPDATE_CONVERT',
+        number
     }
 }

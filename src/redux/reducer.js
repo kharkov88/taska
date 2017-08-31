@@ -1,15 +1,14 @@
-import {UPDATE_USERS,ADD_USER,UPDATE_COUNTER,DELETE_USER} from './actions'
+import {GET_REQUEST, UPDATE_USERS,ADD_USER,UPDATE_CONVERT,DELETE_USER} from './actions'
 const initState ={
     users:[],
-    counterUs:0
+    convert:0
 }
 export let Reducer = (state=initState,action)=>{
     return {
         users:updating(state.users,action),
-        counter:upCounter(state.counter,action)
+        convert:converting(state.convert=0,action),
     }
 }
-
 function updating(state,action){
     switch(action.type){
         case UPDATE_USERS:
@@ -40,8 +39,8 @@ function updating(state,action){
     }
 }
 
-function upCounter(state=0,action){
-    if(action.type===UPDATE_COUNTER){
+function converting(state,action){
+    if(action.type===UPDATE_CONVERT){
         return action.number
     }
 }
