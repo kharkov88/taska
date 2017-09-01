@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export class AddUser extends Component {
+export class Adding extends Component {
     render(){
         let name,email,phone,job;
         return(

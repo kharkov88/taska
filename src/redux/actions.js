@@ -32,6 +32,13 @@ export function clearUsers(){
         type: 'CLEAR'
     }
 }
+export const  UPDATE_CONVERT = 'UPDATE_CONVERT'
+export function updateConvert(number){
+    return{
+        type:'UPDATE_CONVERT',
+        number
+    }
+}
 //асинхроны
 export function getUsers(url='/data/user.json'){
     return dispatch => {
@@ -75,12 +82,5 @@ export function convert(fromVal,enter,toVal){
                  dispatch(getRequst())     
             })          
         }) 
-    }
-}
-export const  UPDATE_CONVERT = 'UPDATE_CONVERT'
-export function updateConvert(number){
-    return{
-        type:'UPDATE_CONVERT',
-        number
     }
 }

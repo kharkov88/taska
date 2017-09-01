@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export class Calcul extends Component {
+export class Calculate extends Component {
     render(){
     let fromValute,toValute,enter;
         return(

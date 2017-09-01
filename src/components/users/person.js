@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 
-export class Users extends Component {
+export class Person extends Component {
 
   render() {
-      let check;
       return(
         <div className="row">
           <div className="col-md-2">{this.props.person.name}</div>

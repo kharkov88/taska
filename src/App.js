@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux'
-import {ShowUsers} from './components/show_users'
-import {AddUser} from './components/add_user'
-import {Calcul} from './components/calcul'
+import {Users,Adding,Calculate} from './components'
 import './App.css'
 
 class App extends Component {
@@ -11,11 +8,11 @@ class App extends Component {
     let visible = fetching?'block':'none'
     return (
       <div className="App container">
-        <ShowUsers actions={actions} users={users}  convert={convert}/>
-        <AddUser adding={actions.addUser}/>
-        <Calcul convert={actions.convert} convertValue={convert}/>
+        <Users actions={actions} users={users}  convert={convert}/>
+        <Adding adding={actions.addUser}/>
+        <Calculate convert={actions.convert} convertValue={convert}/>
         <div className="loader"style={{display:visible}}>
-          <img src="img/25.gif"/>  
+          <img src="img/25.gif" alt="loader"/>  
         </div>
       </div>
     );

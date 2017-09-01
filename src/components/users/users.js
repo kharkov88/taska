@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import {Users} from './users'
+import {Person} from './person'
 
-export class ShowUsers extends Component {
+export class Users extends Component {
   render() {
     let selValue;
-    let {users,actions,convert}  = this.props
+    let {users,actions}  = this.props
     return (
          <section className="users">
           <h1>Users</h1>
@@ -19,7 +19,7 @@ export class ShowUsers extends Component {
           </div>   
           {
             users.map((item,index)=>{
-            return <Users person={item} key={index} id={item.id} delete={actions.delUser}/>
+            return <Person person={item} key={index} id={item.id} delete={actions.delUser}/>
           })
           }
           <div id="result_users"></div>

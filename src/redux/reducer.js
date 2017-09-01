@@ -1,57 +1,8 @@
-import {GET_REQUEST, UPDATE_USERS,ADD_USER,UPDATE_CONVERT,DELETE_USER,CLEAR} from './actions'
-const initState ={
-    users:[],
-    fetching:false,
-    convert:0
-}
-export let Reducer = (state=initState,action)=>{
-    return {
-        users:updating(state.users,action),
-        convert:converting(state.convert,action),
-        fetching:sendFetch(state.fetching,action)
-    }
-}
-function updating(state,action){
-    switch(action.type){
-        case UPDATE_USERS:
-        return [
-            ...state,
-            {
-                id:action.obj.id,
-                name:action.obj.name,
-                email:action.obj.email,
-                phone:action.obj.phone,
-                job:action.obj.job
-            }
-        ]
-        case ADD_USER:
-        return [
-            ...state,
-            {
-                id:++state.length,
-                name:action.obj.name,
-                email:action.obj.email,
-                phone:action.obj.phone,
-                job:action.obj.job
-            }
-        ]
-        case DELETE_USER:
-        return state.filter((item)=>item.id!=action.id)
-        case CLEAR:
-        return []
-        default: return state;
-    }
-}
+import { combineReducers } from 'redux'
+import {users,convert,fetching} from './reducers'
 
-function converting(state,action){
-    if(action.type===UPDATE_CONVERT){
-        return action.number
-    }
-    return state;
-}
-function sendFetch(state,action){
-    if(action.type===GET_REQUEST){
-        return !state
-    }
-    return state;
-}
+export default combineReducers({
+    users,
+    convert,
+    fetching
+})
