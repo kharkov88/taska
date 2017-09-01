@@ -1,12 +1,14 @@
 import {GET_REQUEST, UPDATE_USERS,ADD_USER,UPDATE_CONVERT,DELETE_USER,CLEAR} from './actions'
 const initState ={
     users:[],
+    fetching:false,
     convert:0
 }
 export let Reducer = (state=initState,action)=>{
     return {
         users:updating(state.users,action),
-        convert:converting(state.convert=0,action),
+        convert:converting(state.convert,action),
+        fetching:sendFetch(state.fetching,action)
     }
 }
 function updating(state,action){
@@ -45,4 +47,11 @@ function converting(state,action){
     if(action.type===UPDATE_CONVERT){
         return action.number
     }
+    return state;
+}
+function sendFetch(state,action){
+    if(action.type===GET_REQUEST){
+        return !state
+    }
+    return state;
 }

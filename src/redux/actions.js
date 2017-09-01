@@ -35,6 +35,7 @@ export function clearUsers(){
 //асинхроны
 export function getUsers(url='/data/user.json'){
     return dispatch => {
+        dispatch(getRequst())
         dispatch(clearUsers())
         fetch(url,{
         })
@@ -42,14 +43,18 @@ export function getUsers(url='/data/user.json'){
             response.json().then(data=>{
                 if(data.length==0){
                     document.getElementById('result_users').innerHTML = 'Users not found'
-                }           
+                }
+                else{
+                    document.getElementById('result_users').innerHTML = ''
+                }       
                 data.map(item=>dispatch(updateUsers({
                     id:item.id,
                     name:item.name,
                     email:item.email,
                     phone:item.phone,
                     job:item.company.name
-                })))                
+                })))   
+                dispatch(getRequst())             
             })          
         }) 
     }
@@ -57,6 +62,7 @@ export function getUsers(url='/data/user.json'){
 
 export function convert(fromVal,enter,toVal){
     return (dispatch) => {
+        dispatch(getRequst())
         fetch(`http://api.fixer.io/latest?base=${fromVal}`,{
             method:'get'
         })  
@@ -64,8 +70,9 @@ export function convert(fromVal,enter,toVal){
             response.json().then(data=>{                           
                 let kef = data.rates[toVal]
                 fromVal===toVal
-                ?dispatch(updateConvert(enter))
-                :dispatch(updateConvert((enter*kef).toFixed(2)))          
+                        ?dispatch(updateConvert(enter))
+                        :dispatch(updateConvert((enter*kef).toFixed(2)))    
+                 dispatch(getRequst())     
             })          
         }) 
     }

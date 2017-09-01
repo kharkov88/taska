@@ -11,7 +11,8 @@ const mapDispatchToProps = function (dispatch){
 const mapStateToProps = function (state){ 
     return {
         users:state.users,
-        convert:state.convert
+        convert:state.convert,
+        fetching:state.fetching
     }
 }
 

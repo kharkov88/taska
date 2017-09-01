@@ -20,7 +20,7 @@ export class AddUser extends Component {
                 <button className="btn btn-info btn-sm" onClick={(e)=>{
                     e.preventDefault();
                     if(name.value.trim()!=0&&email.value.trim()!=0&&phone.value.trim()!=0){
-                    this.props.actions.addUser({
+                    this.props.adding({
                                 name:name.value,
                                 email:email.value,
                                 phone:phone.value,
